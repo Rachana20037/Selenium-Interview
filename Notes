@@ -1,0 +1,552 @@
+Perfect. As a QA Automation Engineer, don't just know the file names. Know:
+
+**1. Why the file exists**
+**2. Who calls it**
+**3. What it contains**
+**4. When it gets triggered**
+
+---
+
+# 1. BaseClass.java
+
+### Purpose : Common setup and teardown for all tests.
+
+### Contains
+
+```java
+@BeforeMethod
+public void setup()
+
+@AfterMethod
+public void tearDown()
+```
+
+### Why Needed : Without BaseClass, every test would need:
+
+```java
+ChromeDriver driver = new ChromeDriver();
+driver.get(url);
+driver.quit();
+```
+
+again and again.
+
+### Triggered By
+
+```text
+LoginTest extends BaseClass
+```
+
+When TestNG starts the test:
+
+```text
+LoginTest
+   ↓
+@BeforeMethod (BaseClass)
+   ↓
+Test Method
+   ↓
+@AfterMethod (BaseClass)
+```
+
+---
+====================================================================================
+# 2. DriverFactory.java
+
+### Purpose: Create browser instance.
+
+### Contains
+
+```java
+ChromeDriver
+
+EdgeDriver
+
+FirefoxDriver
+```
+
+Example:
+
+```java
+public static WebDriver getDriver()
+```
+
+### Why Needed
+
+Tomorrow manager says:
+```text
+Run on Edge Browser
+```
+
+Change only DriverFactory.
+
+No need to modify all test cases.
+
+### Triggered By
+
+```text
+BaseClass
+   ↓
+DriverFactory
+```
+
+---
+===================================================================================================
+# 3. LoginPage.java
+
+### Purpose : Store Login Page Locators + Actions.
+
+### Contains
+
+```java
+@FindBy(id="username")
+WebElement username;
+
+@FindBy(id="password")
+WebElement password;
+```
+
+Methods:
+
+```java
+enterUsername()
+
+enterPassword()
+
+clickLogin()
+```
+
+### Why Needed
+
+Avoid:
+
+```java
+driver.findElement()
+```
+
+inside test cases.
+
+### Triggered By
+
+```text
+LoginTest
+   ↓
+LoginPage
+```
+
+---
+================================================================================================
+# 4. DashboardPage.java
+
+### Purpose: Store Dashboard related actions.
+
+### Contains
+
+```java
+verifyDashboard()
+
+logout()
+
+clickProfile()
+```
+
+### Why Needed
+
+After login user lands on dashboard.
+
+Dashboard operations belong here.
+
+### Triggered By
+
+```text
+LoginPage
+    ↓
+DashboardPage
+```
+
+---
+================================================================================================
+# 5. CommonMethods.java
+
+### Purpose: Reusable methods.
+
+### Contains
+
+```java
+click()
+
+sendKeys()
+
+scroll()
+
+uploadFile()
+
+selectDropdown()
+```
+
+### Why Needed
+
+Without it:
+
+```java
+element.click();
+element.click();
+element.click();
+```
+
+in every page.
+
+### Triggered By
+
+```text
+LoginPage
+DashboardPage
+
+      ↓
+
+CommonMethods
+```
+
+---
+======================================================================================
+# 6. ConfigReader.java
+
+### Purpose: Read config.properties.
+
+### Contains
+
+```java
+getProperty()
+```
+
+### Reads
+
+```properties
+browser=chrome
+url=https://abc.com
+```
+
+### Why Needed
+
+Avoid hardcoding.
+
+Bad:
+
+```java
+driver.get("https://abc.com");
+```
+
+Good:
+
+```java
+driver.get(getProperty("url"));
+```
+
+### Triggered By
+
+```text
+BaseClass
+      ↓
+ConfigReader
+```
+
+---
+
+# 7. ExcelUtils.java
+
+### Purpose
+
+Read Excel.
+
+### Contains
+
+```java
+getRowCount()
+
+getCellData()
+```
+
+### Why Needed
+
+Store test data outside code.
+
+Example:
+
+```text
+Admin admin123
+
+User1 pass123
+```
+
+### Triggered By
+
+```text
+TestDataProvider
+      ↓
+ExcelUtils
+```
+
+---
+================================================================================================
+# 8. WaitUtils.java
+
+### Purpose: Handle synchronization.
+
+### Contains
+
+```java
+waitForElementVisible()
+
+waitForElementClickable()
+```
+
+### Why Needed
+
+Web pages load slowly.
+
+Without wait:
+
+```java
+NoSuchElementException
+```
+
+### Triggered By
+
+```text
+LoginPage
+DashboardPage
+```
+
+---
+==================================================================================
+# 9. ScreenshotUtils.java
+
+### Purpose: Take screenshot.
+
+### Contains
+
+```java
+captureScreenshot()
+```
+
+### Why Needed
+
+Evidence when test fails.
+
+Saved In:
+
+```text
+reports/Screenshots
+```
+
+### Triggered By
+
+```text
+TestListener
+      ↓
+ScreenshotUtils
+```
+
+---
+===============================================================================================
+# 10. TestListener.java
+
+### Purpose: Listen to test execution.
+
+### Contains
+
+```java
+onTestStart()
+
+onTestSuccess()
+
+onTestFailure()
+```
+
+### Why Needed
+
+Automatic actions.
+
+Example:
+
+```text
+Test Failed
+      ↓
+Take Screenshot
+      ↓
+Update Report
+```
+
+### Triggered By
+
+```text
+TestNG
+      ↓
+Listener
+```
+
+You never call it manually.
+
+---
+===================================================================================================
+# 11. TestDataProvider.java
+
+### Purpose
+
+Provide test data.
+
+### Contains
+
+```java
+@DataProvider
+```
+
+Example:
+
+```java
+{
+ {"admin","admin123"},
+ {"user","user123"}
+}
+```
+
+### Why Needed
+
+Run same test multiple times.
+
+### Triggered By
+
+```java
+@Test(dataProvider="loginData")
+```
+
+---=========================================================================================================
+# 12. LoginTest.java
+
+### Purpose: Actual Test Case.
+
+### Contains
+
+```java
+@Test
+public void verifyLogin()
+```
+
+### Why Needed
+
+This is where testing happens.
+
+### Triggered By
+
+```text
+TestNG XML
+      ↓
+LoginTest
+```
+
+---
+=============================================================================================
+# 13. config.properties
+
+### Purpose: Store environment configuration.
+
+### Contains
+
+```properties
+browser=chrome
+url=https://test.com
+username=admin
+password=admin123
+```
+
+### Read By
+
+```text
+ConfigReader
+```
+
+---
+
+# Actual Execution Flow
+
+```text
+testng.xml
+
+      ↓
+
+LoginTest
+
+      ↓
+
+BaseClass
+
+      ↓
+
+DriverFactory
+
+      ↓
+
+Chrome Browser Opens
+
+      ↓
+
+ConfigReader
+
+      ↓
+
+Read URL
+
+      ↓
+
+LoginPage
+
+      ↓
+
+CommonMethods
+
+      ↓
+
+Enter Username
+
+      ↓
+
+Enter Password
+
+      ↓
+
+Click Login
+
+      ↓
+
+DashboardPage
+
+      ↓
+
+Assertion
+
+      ↓
+
+PASS / FAIL
+
+      ↓
+
+TestListener
+
+      ↓
+
+Extent Report
+
+      ↓
+
+ScreenshotUtils (only if fail)
+
+      ↓
+
+reports folder
+```
+
+### Interview One-Liner
+
+If asked, *"How do all files connect?"*
+
+> Test execution starts from TestNG test cases. Test cases extend BaseClass, which initializes the browser using DriverFactory and reads configuration through ConfigReader. Test cases interact with Page Objects such as LoginPage and DashboardPage. CommonMethods and WaitUtils provide reusable actions. Test data is supplied through DataProvider and ExcelUtils. TestNG Listeners monitor execution and generate reports or screenshots using ScreenshotUtils when failures occur. This design follows the Page Object Model and keeps the framework maintainable and reusable.
