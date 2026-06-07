@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import base.BaseClass;
 import pages.LoginPage;
+import utilities.ConfigReader;
 
 public class LoginTest extends BaseClass {
 
@@ -16,11 +17,14 @@ public class LoginTest extends BaseClass {
 //    }
     
     @Test
-    public void verifyLogin() {
+    public void verifyLogin() throws InterruptedException {
+    	
+    	Thread.sleep(5000);
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login("Admin", "admin123");
+//        loginPage.login("Admin", "admin123");
+        loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
 
     }
 }

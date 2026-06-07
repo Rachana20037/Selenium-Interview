@@ -2,7 +2,7 @@ package utilities;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-public class configReader {
+public class ConfigReader {
 
 	 static Properties prop;
 
@@ -10,8 +10,7 @@ public class configReader {
 
 	        try {
 
-	            FileInputStream fis =
-	                    new FileInputStream("resources/config.properties");
+	            FileInputStream fis = new FileInputStream("resources/config.properties");
 
 	            prop = new Properties();
 

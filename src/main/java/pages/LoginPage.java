@@ -11,8 +11,8 @@ public class LoginPage {
 		this.driver = driver;
 	}
 	
-	By usernameTxt = By.xpath("//input[@placeholder='Username']");
-	By passwordTxt = By.xpath("//input[@placeholder='Password']");
+	By usernameTxt = By.name("username");
+	By passwordTxt = By.name("password");
 	By loginBtn = By.xpath("//button[@type='submit']");
 	
 	
@@ -21,7 +21,7 @@ public class LoginPage {
 	}
 	
 	public void enterPassword(String password) {
-		driver.findElement(usernameTxt).sendKeys(password);
+		driver.findElement(passwordTxt).sendKeys(password);
 	}
 	
 	public void clickLogin() {

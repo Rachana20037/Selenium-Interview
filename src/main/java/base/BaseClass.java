@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.AfterMethod;
-import utilities.configReader;
+import utilities.ConfigReader;
 import drivers.DriverFactory;
 public class BaseClass {
 
@@ -24,7 +24,7 @@ public class BaseClass {
 	public void setup() {
 		driver = DriverFactory.getDriver();
 		driver.manage().window().maximize();
-		driver.get(configReader.getProperty("url"));
+		driver.get(ConfigReader.getProperty("url"));
 	}
 	
 	@Test
