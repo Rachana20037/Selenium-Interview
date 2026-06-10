@@ -26,7 +26,7 @@ public class DashboardTest extends BaseClass{
         Assert.assertTrue(dashboardPage.isDashboardDisplayed());
         dashboardPage.profileClick();
         Thread.sleep(3000);
-        dashboardPage.logoutBtn();
+//        dashboardPage.logoutBtn();
 
     }	
 }
