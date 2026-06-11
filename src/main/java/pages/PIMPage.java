@@ -18,15 +18,33 @@ public class PIMPage {
 //	By MiddleName =By.name("middleName");
 	By LastName =By.name("lastName");
 	By SaveBtn =By.xpath("//button[.=\" Save \"]");
+	By page2SaveBtn= By.xpath("(//button[@type=\"submit\"])[1]");
 	
-	
-	public void enterFirstName() {
-		driver.findElement(FirstName).sendKeys("Abcc");
+	public void clickPIMMenu() {
+	    driver.findElement(PIM_Menu).click();
 	}
-	public void enterLastName() {
-		driver.findElement(LastName).sendKeys("Deff");
+
+	public void clickAddEmployeeBtn() {
+	    driver.findElement(AddEmpBtn).click();
+	}
+	
+	public void enterFirstName(String fName) {
+		driver.findElement(FirstName).sendKeys(fName);
+	}
+	public void enterLastName(String lName) {
+		driver.findElement(LastName).sendKeys(lName);
 	}
 	public void clickSave() {
 		driver.findElement(SaveBtn).click();
+	}
+	
+	public void page2SaveBtn() {
+		driver.findElement(page2SaveBtn).click();
+	}
+	
+	public void addEmployee(String fName, String lName) {
+		enterFirstName(fName);
+		enterLastName(lName);
+		clickSave();
 	}
 }

@@ -22,7 +22,7 @@ public class LoginTest extends BaseClass {
     	Thread.sleep(5000);
 
         LoginPage loginPage = new LoginPage(driver);
-
+        Thread.sleep(5000);
 //        loginPage.login("Admin", "admin123");
         loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
 
