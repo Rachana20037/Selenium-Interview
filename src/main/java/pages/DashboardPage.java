@@ -12,7 +12,7 @@ public class DashboardPage {
 	public DashboardPage(WebDriver driver) {
 
 		this.driver = driver;
-
+		waitUtils = new waitUtils(driver);
 	}
 
 	By dashboardTxt = By.xpath("//h6[.='Dashboard']");

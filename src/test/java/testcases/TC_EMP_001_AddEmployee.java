@@ -29,8 +29,8 @@ public class TC_EMP_001_AddEmployee  extends BaseClass{
 		pimPage.addEmployee("Rajuu", "Singh");
 //		Thread.sleep(2000);
 //		pimPage.clickSave();
-//		Thread.sleep(5000);
-//		Assert.assertTrue(driver.getCurrentUrl().contains("viewPersonalDetails"));
+		Thread.sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().contains("viewPersonalDetails"));
 		Thread.sleep(5000);
 		pimPage.page2SaveBtn();	
 	}

@@ -32,4 +32,10 @@ public class waitUtils {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
 
     }
+    
+    public void waitForLoaderToDisappear(By loader) {
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(loader)
+        );
+    }
 }
