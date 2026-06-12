@@ -29,7 +29,6 @@ public class LoginPage {
 //		driver.findElement(usernameTxt).sendKeys(username); //Method 1
 		waitUtils.waitForElementVisible(usernameTxt).sendKeys(username);  //Method 2
 		
-		
 		/* Sometimes automation runs twice and field contains old value. */
 //		element.clear();
 //	    element.sendKeys(username);
