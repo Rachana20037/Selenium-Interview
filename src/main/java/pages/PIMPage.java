@@ -17,7 +17,7 @@ public class PIMPage {
 		commonMethods = new CommonMethods(driver);
 
 }
-	
+//	Add EMP
 	By PIM_Menu = By.xpath("(//span[.=\"PIM\"])[1]"); //PIM Menu
 	By AddEmpBtn = By.xpath("//button[.=\" Add \"]"); 	//Add Employee Button
 	By FirstName =By.name("firstName");
@@ -26,9 +26,25 @@ public class PIMPage {
 	By SaveBtn =By.xpath("//button[@type=\"submit\"]");
 	By page2SaveBtn= By.xpath("(//button[@type=\"submit\"])[1]");
 	By loader = By.className("oxd-form-loader");
+	
+//	Search EMP
+	
+	By searchTxt = By.xpath("(//input[@placeholder=\"Type for hints...\"])[1]");
+//	By searchTxt = By.className("oxd-autocomplete-text-input oxd-autocomplete-text-input--active");
+	By searchEmp = By.xpath("//button[@type=\"submit\"]");
+	By searchedName =By.xpath("(//div[.=\"bala kumar\"])[2]");
+	
+//	Delete EMP
+	By deleteCheckBox = ByClassName("oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input");
+	
 	public void clickPIMMenu() {
 //	    driver.findElement(PIM_Menu).click();
 	    waitUtils.waitForElementVisible(PIM_Menu).click();
+	}
+
+	private By ByClassName(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public void clickAddEmployeeBtn() {
@@ -49,8 +65,6 @@ public class PIMPage {
 		waitUtils.waitForElementVisible(SaveBtn).click();
 	}
 	
-	
-	
 	public void page2SaveBtn() {
 //		scrollToSaveButton();
 ////		driver.findElement(page2SaveBtn).click();
@@ -59,9 +73,24 @@ public class PIMPage {
 		scrollToSaveButton();
 		waitUtils.waitForElementClickable(page2SaveBtn).click();
 	}
+	
 	public void scrollToSaveButton() {
 
 	    commonMethods.scrollToElement(driver.findElement(page2SaveBtn));
+	}
+	
+	public void searchEmployee() {
+//		waitUtils.waitForElementClickable(sav).click();
+		commonMethods.sendKeys(searchTxt, "bala kumar");
+//		driver.findElement(searchTxt).sendKeys("bala kumar");
+		commonMethods.click(searchEmp);
+//		driver.findElement(searchEmp).click();
+		commonMethods.scrollToElement(waitUtils.waitForElementVisible(searchedName));
+		
+	}
+	
+	public void deleteEmp() {
+		driver.findElement(deleteCheckBox).click();
 	}
 	
 	public void addEmployee(String fName, String lName) {

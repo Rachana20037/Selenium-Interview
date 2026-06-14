@@ -1,3 +1,10 @@
+/*
+sendKeys()
+click()
+scroll()
+ */
+
+
 package utilities;
 
 import org.openqa.selenium.By;
@@ -23,7 +30,6 @@ public class CommonMethods {
     public void sendKeys(By locator, String text) {
 
         driver.findElement(locator).clear();
-
         driver.findElement(locator).sendKeys(text);
 
     }
@@ -37,8 +43,6 @@ public class CommonMethods {
     public void scrollToElement(WebElement element) {
 
         JavascriptExecutor js =(JavascriptExecutor) driver;
-
         js.executeScript("arguments[0].scrollIntoView(true);",element);
-
     }
 }

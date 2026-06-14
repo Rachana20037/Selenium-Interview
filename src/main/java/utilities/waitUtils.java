@@ -1,3 +1,11 @@
+/*
+Wait for element
+Wait for text
+Wait for loader
+Wait for clickable
+ */
+
+
 package utilities;
 import java.time.Duration;
 
@@ -35,7 +43,7 @@ public class waitUtils {
     
     public void waitForLoaderToDisappear(By loader) {
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(loader)
-        );
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(loader));
     }
+   
 }
