@@ -1,6 +1,7 @@
 package testcases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseClass;
@@ -19,8 +20,14 @@ public class TC_EMP_003_DeleteEmployee extends BaseClass {
 		PIMPage pimPage = new PIMPage(driver);
 		Thread.sleep(2000);
 		pimPage.clickPIMMenu();
+		Thread.sleep(2000);
 	    pimPage.searchEmployee();
+	    Thread.sleep(2000);
 	    pimPage.deleteEmp();
+	    Thread.sleep(2000);
+	    pimPage.searchEmployee();
+	    Thread.sleep(1000);
+	    Assert.assertTrue(pimPage.isNoRecordFoundDisplayed());
 	}
 	 
 }

@@ -31,20 +31,19 @@ public class PIMPage {
 	
 	By searchTxt = By.xpath("(//input[@placeholder=\"Type for hints...\"])[1]");
 //	By searchTxt = By.className("oxd-autocomplete-text-input oxd-autocomplete-text-input--active");
-	By searchEmp = By.xpath("//button[@type=\"submit\"]");
+	By searchEmp = By.xpath("//button[@type=\"submit\"]");	
 	By searchedName =By.xpath("(//div[.=\"bala kumar\"])[2]");
 	
 //	Delete EMP
-	By deleteCheckBox = ByClassName("oxd-checkbox-input oxd-checkbox-input--active --label-right oxd-checkbox-input");
+	By deleteCheckBox = By.xpath("(//span[contains(@class,'oxd-checkbox-input')])[2]");
+	By deleteIcon = By.xpath("(//button[contains(@class,'oxd-icon-button')])[5]");
+	By confirmDelete = By.xpath("(//button[@type=\"button\"])[10]");
+	
+	By noRecordFound =By.xpath("//span[text()='No Records Found']");
 	
 	public void clickPIMMenu() {
 //	    driver.findElement(PIM_Menu).click();
 	    waitUtils.waitForElementVisible(PIM_Menu).click();
-	}
-
-	private By ByClassName(String string) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void clickAddEmployeeBtn() {
@@ -90,7 +89,17 @@ public class PIMPage {
 	}
 	
 	public void deleteEmp() {
-		driver.findElement(deleteCheckBox).click();
+//		driver.findElement(deleteCheckBox).click();
+		commonMethods.click(deleteCheckBox);
+//		driver.findElement(deleteIcon).click();
+		commonMethods.click(deleteIcon);
+//		driver.findElement(confirmDelete).click();
+		commonMethods.click(confirmDelete);
+	}
+	
+	public boolean isNoRecordFoundDisplayed() {
+
+	    return waitUtils.waitForElementVisible(noRecordFound).isDisplayed();
 	}
 	
 	public void addEmployee(String fName, String lName) {
