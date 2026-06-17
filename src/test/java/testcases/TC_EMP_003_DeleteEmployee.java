@@ -21,11 +21,11 @@ public class TC_EMP_003_DeleteEmployee extends BaseClass {
 		Thread.sleep(2000);
 		pimPage.clickPIMMenu();
 		Thread.sleep(2000);
-	    pimPage.searchEmployee();
+	    pimPage.searchEmployee("Bala Kumar");
 	    Thread.sleep(2000);
 	    pimPage.deleteEmp();
 	    Thread.sleep(2000);
-	    pimPage.searchEmployee();
+	    pimPage.searchEmployee("Bala Kumar");
 	    Thread.sleep(1000);
 	    Assert.assertTrue(pimPage.isNoRecordFoundDisplayed());
 	}

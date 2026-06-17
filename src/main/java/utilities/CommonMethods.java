@@ -31,7 +31,7 @@ public class CommonMethods {
 
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
-
+        
     }
 
     public String getText(By locator) {
@@ -44,5 +44,11 @@ public class CommonMethods {
 
         JavascriptExecutor js =(JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
+    
+    public void clear(By locator) {
+
+        driver.findElement(locator).clear();
+
     }
 }

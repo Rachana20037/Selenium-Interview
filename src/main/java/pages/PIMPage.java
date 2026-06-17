@@ -37,7 +37,8 @@ public class PIMPage {
 //	Delete EMP
 	By deleteCheckBox = By.xpath("(//span[contains(@class,'oxd-checkbox-input')])[2]");
 	By deleteIcon = By.xpath("(//button[contains(@class,'oxd-icon-button')])[5]");
-	By confirmDelete = By.xpath("(//button[@type=\"button\"])[10]");
+//	By confirmDelete = By.xpath("(//button[@type=\"button\"])[10]");
+	By confirmDelete = By.xpath("//button[.=\" Yes, Delete \"]");
 	
 	By noRecordFound =By.xpath("//span[text()='No Records Found']");
 	
@@ -78,9 +79,10 @@ public class PIMPage {
 	    commonMethods.scrollToElement(driver.findElement(page2SaveBtn));
 	}
 	
-	public void searchEmployee() {
+	public void searchEmployee(String empName) {
 //		waitUtils.waitForElementClickable(sav).click();
-		commonMethods.sendKeys(searchTxt, "bala kumar");
+//		commonMethods.sendKeys(searchTxt, "bala kumar");
+		commonMethods.sendKeys(searchTxt, empName);
 //		driver.findElement(searchTxt).sendKeys("bala kumar");
 		commonMethods.click(searchEmp);
 //		driver.findElement(searchEmp).click();

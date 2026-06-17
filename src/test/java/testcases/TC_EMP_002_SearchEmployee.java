@@ -21,7 +21,7 @@ public class TC_EMP_002_SearchEmployee extends BaseClass {
 		Thread.sleep(2000);
 		pimPage.clickPIMMenu();
 		Thread.sleep(2000);
-		pimPage.searchEmployee();
+		pimPage.searchEmployee("Bala Kumar");
 		
 
 
