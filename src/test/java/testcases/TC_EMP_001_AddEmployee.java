@@ -26,7 +26,7 @@ public class TC_EMP_001_AddEmployee  extends BaseClass{
 		Thread.sleep(2000);
 		pimPage.clickAddEmployeeBtn();
 		Thread.sleep(2000);
-		pimPage.addEmployee("Rajuu", "Singh");
+		pimPage.addEmployee("Rajuu ", "Singh");
 //		Thread.sleep(2000);
 //		pimPage.clickSave();
 		Thread.sleep(5000);

@@ -26,8 +26,9 @@ public class TC_EMP_003_DeleteEmployee extends BaseClass {
 	    pimPage.deleteEmp();
 	    Thread.sleep(2000);
 	    pimPage.searchEmployee("Bala Kumar");
-	    Thread.sleep(1000);
 	    Assert.assertTrue(pimPage.isNoRecordFoundDisplayed());
+	    
+//	    Assert.assertTrue(pimPage.isNoRecordFoundDisplayed());
 	}
 	 
 }

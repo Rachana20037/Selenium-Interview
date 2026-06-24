@@ -1,6 +1,7 @@
 package testcases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseClass;
@@ -22,6 +23,7 @@ public class TC_EMP_002_SearchEmployee extends BaseClass {
 		pimPage.clickPIMMenu();
 		Thread.sleep(2000);
 		pimPage.searchEmployee("Bala Kumar");
+		Assert.assertTrue(pimPage.isEmployeeDisplayed());
 		
 
 

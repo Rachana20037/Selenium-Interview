@@ -86,8 +86,12 @@ public class PIMPage {
 //		driver.findElement(searchTxt).sendKeys("bala kumar");
 		commonMethods.click(searchEmp);
 //		driver.findElement(searchEmp).click();
-		commonMethods.scrollToElement(waitUtils.waitForElementVisible(searchedName));
+//		commonMethods.scrollToElement(waitUtils.waitForElementVisible(searchedName));
 		
+	}
+	public boolean isEmployeeDisplayed() {
+
+	    return waitUtils.waitForElementVisible(searchedName).isDisplayed();
 	}
 	
 	public void deleteEmp() {
