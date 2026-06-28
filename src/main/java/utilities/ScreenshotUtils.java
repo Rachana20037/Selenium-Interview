@@ -16,7 +16,7 @@ public class ScreenshotUtils {
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        String filePath ="Screenshots/" + testName + "_" + timeStamp + ".png";
+        String filePath ="reports/Screenshots/" + testName + "_" + timeStamp + ".png";
 
         try {
 
