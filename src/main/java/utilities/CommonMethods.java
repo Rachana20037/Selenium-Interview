@@ -43,7 +43,12 @@ public class CommonMethods {
     public void scrollToElement(WebElement element) {
 
         JavascriptExecutor js =(JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",element);
+        /* perfectly worked for the big screen size ,true means: Bring element to TOP of page*/
+//        js.executeScript("arguments[0].scrollIntoView(true);",element); 
+        
+        
+      //This will work on all screen size , Bring element to CENTER 
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});",element); 
     }
     
     public void clear(By locator) {
