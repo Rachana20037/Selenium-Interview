@@ -9,6 +9,7 @@ import pages.LoginPage;
 import pages.PIMPage;
 import utilities.ConfigReader;
 import utilities.ExcelUtils;
+import utilities.waitUtils;
 import testcases.ExcelReadTest;
 
 public class TC_EMP_001_AddEmployee extends BaseClass {
@@ -50,13 +51,12 @@ public class TC_EMP_001_AddEmployee extends BaseClass {
 
 	public void verifyAddEmployee(String firstName, String lastName) throws InterruptedException {
 		LoginPage loginPage = new LoginPage(driver);
-		Thread.sleep(5000);
+		Assert.assertTrue(loginPage.isLoginPageDisplayed());
 		loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
-
-		Thread.sleep(5000);
 
 		PIMPage pimPage = new PIMPage(driver);
 		Thread.sleep(2000);
+		
 		pimPage.clickPIMMenu();
 		Thread.sleep(2000);
 		pimPage.clickAddEmployeeBtn();

@@ -27,11 +27,6 @@ public class BaseClass {
 		driver.get(ConfigReader.getProperty("url"));
 	}
 	
-	@Test
-    public void test() {
-        System.out.println("TestNG Working");
-    }
-	
 	@AfterMethod
 	public void tearDown() {
 //		DriverFactory.quitDriver();

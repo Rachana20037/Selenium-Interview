@@ -1,6 +1,7 @@
 package testcases;
 
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import base.BaseClass;
@@ -18,11 +19,9 @@ public class LoginTest extends BaseClass {
     
     @Test
     public void verifyLogin() throws InterruptedException {
-    	
-    	Thread.sleep(5000);
 
         LoginPage loginPage = new LoginPage(driver);
-        Thread.sleep(5000);
+        Assert.assertTrue(loginPage.isLoginPageDisplayed());
 //        loginPage.login("Admin", "admin123");
         loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
 

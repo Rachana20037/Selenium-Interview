@@ -13,15 +13,14 @@ public class TC_EMP_003_DeleteEmployee extends BaseClass {
 	@Test
 	public void verifyDeleteEmployee() throws InterruptedException {
 		LoginPage loginPage = new LoginPage(driver);
-		Thread.sleep(5000);
+		Assert.assertTrue(loginPage.isLoginPageDisplayed());
 		loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
 		
-		Thread.sleep(5000);
 		PIMPage pimPage = new PIMPage(driver);
-		Thread.sleep(2000);
+
 		pimPage.clickPIMMenu();
-		Thread.sleep(2000);
-	    pimPage.searchEmployee("Bala Kumar");
+//	    pimPage.searchEmployee("Bala Kumar");
+//	    pimPage.searchEmployee();
 	    Thread.sleep(2000);
 	    pimPage.deleteEmp();
 	    Thread.sleep(2000);

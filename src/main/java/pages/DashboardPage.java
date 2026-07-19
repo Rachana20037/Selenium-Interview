@@ -31,6 +31,7 @@ public class DashboardPage {
 	}
 
 	public void logoutBtn() {
+		profileClick();
 //		driver.findElement(logoutBtn).click();
 		waitUtils.waitForElementVisible(logoutBtn).click();
 	}

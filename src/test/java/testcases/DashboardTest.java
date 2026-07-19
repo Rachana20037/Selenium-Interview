@@ -8,25 +8,22 @@ import pages.DashboardPage;
 import pages.LoginPage;
 import utilities.ConfigReader;
 
-public class DashboardTest extends BaseClass{
+public class DashboardTest extends BaseClass {
 	@Test
-    public void verifyLogin() throws InterruptedException {
-		
-		 LoginPage loginPage = new LoginPage(driver);
+	public void verifyLogin() throws InterruptedException {
 
-		 Thread.sleep(5000);
-		    loginPage.login(
-		            ConfigReader.getProperty("username"),
-		            ConfigReader.getProperty("password"));
+		LoginPage loginPage = new LoginPage(driver);
+		Assert.assertTrue(loginPage.isLoginPageDisplayed());
+		loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
 
-		    Thread.sleep(3000);
-    
-        DashboardPage dashboardPage = new DashboardPage(driver);
+		DashboardPage dashboardPage = new DashboardPage(driver);
 
-        Assert.assertTrue(dashboardPage.isDashboardDisplayed());
-        dashboardPage.profileClick();
-        Thread.sleep(3000);
-        dashboardPage.logoutBtn();
+		/*
+		 * Refactor in Thread.sleep dashboardPage.profileClick(); Thread.sleep(3000);
+		 * waitUtils.waitForElementVisible(logoutBtn);
+		 */
+		Assert.assertTrue(dashboardPage.isDashboardDisplayed());
+		dashboardPage.logoutBtn();
 
-    }	
+	}
 }

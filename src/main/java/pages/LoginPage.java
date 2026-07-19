@@ -46,7 +46,11 @@ public class LoginPage {
 //		driver.findElement(loginBtn).click();
 		waitUtils.waitForElementClickable(loginBtn).click();
 	}
-	
+	public boolean isLoginPageDisplayed() {
+
+	    return waitUtils.waitForElementVisible(usernameTxt).isDisplayed();
+
+	}
 	 public void login(String username, String password) {
 
 	        enterUsername(username);
