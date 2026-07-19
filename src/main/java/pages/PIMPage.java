@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import utilities.CommonMethods;
 import utilities.waitUtils;
@@ -114,24 +115,19 @@ public class PIMPage {
 //	    commonMethods.click(searchEmp);
 //	}*/
 	
-	//tempory
 	public void searchEmployee(String empName) {
 
 	    commonMethods.sendKeys(searchTxt, empName);
 
-	    System.out.println("Typed : " + empName);
-
-	    System.out.println("Search buttons = "
-	            + driver.findElements(searchEmp).size());
-
 	    commonMethods.click(searchEmp);
 
+	    waitUtils.waitForLoaderToDisappear(loader);
 	}
 	
-	public By getEmployeeNameLocator(String empName) {
-
-	    return By.xpath("(//div[translate(text(), " +	"'ABCDEFGHIJKLMNOPQRSTUVWXYZ', " +"'abcdefghijklmnopqrstuvwxyz')='" +empName.toLowerCase() +"'])[2]");
-	}
+//	public By getEmployeeNameLocator(String empName) {
+//
+//	    return By.xpath("(//div[translate(text(), " +	"'ABCDEFGHIJKLMNOPQRSTUVWXYZ', " +"'abcdefghijklmnopqrstuvwxyz')='" +empName.toLowerCase() +"'])[2]");
+//	}
 	/*public boolean isEmployeeDisplayed() {
 
 	    return waitUtils.waitForElementVisible(searchedName).isDisplayed();
@@ -149,10 +145,21 @@ public class PIMPage {
 	public boolean isEmployeeDisplayed(String empName) {
 //		commonMethods.click(getEmployeeSuggestion(empName));
 
-	    return waitUtils.waitForElementVisible(getEmployeeNameLocator(empName)).isDisplayed();
+//	    return waitUtils.waitForElementVisible(getEmployeeNameLocator(empName)).isDisplayed();
+		WebElement employee = waitUtils.waitForElementVisible(searchedName);
+
+	    commonMethods.scrollToElement(employee);
+
+	    return employee.isDisplayed();
 
 	}
-	
+//	public void scrollToSearchedEmployee(String empName) {
+//
+//	    WebElement employee =
+//	            waitUtils.waitForElementVisible(getEmployeeNameLocator(empName));
+//
+//	    commonMethods.scrollToElement(employee);
+//	}
 	public void deleteEmp() {
 //		driver.findElement(deleteCheckBox).click();
 		commonMethods.click(deleteCheckBox);

@@ -39,6 +39,7 @@ public class TC_EMP_002_SearchEmployee extends BaseClass {
 
 		pimPage.searchEmployee(empName);
 //		CommonMethods.scrollToElement(empName);
+//		pimPage.scrollToSearchedEmployee(empName);
 
 		Assert.assertTrue(pimPage.isEmployeeDisplayed(empName));
 
