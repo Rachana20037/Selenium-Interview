@@ -20,7 +20,7 @@
             <class name="testcases.TC_EMP_002_SearchEmployee"/>
 <!-- 
             <class name="testcases.TC_EMP_003_DeleteEmployee"/> -->
-            	
+            	<class name="testcases.LogoutTest"/>
             
 
         </classes>

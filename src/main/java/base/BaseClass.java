@@ -22,14 +22,16 @@ public class BaseClass {
 	
 	@BeforeMethod
 	public void setup() {
-		driver = DriverFactory.getDriver();
+//		driver = DriverFactory.getDriver();
+		driver = DriverFactory.getDriver(
+		        ConfigReader.getProperty("browser"));
 		driver.manage().window().maximize();
 		driver.get(ConfigReader.getProperty("url"));
 	}
 	
 	@AfterMethod
 	public void tearDown() {
-//		DriverFactory.quitDriver();
+		DriverFactory.quitDriver();
 	}
 	
 	
